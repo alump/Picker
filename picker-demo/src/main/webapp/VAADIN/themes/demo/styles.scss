@@ -1,3 +1,13 @@
 @import "../reindeer/reindeer.scss";
 @include reindeer;
 
+.demo-b-line {
+ background-color: #008;
+ color: white;
+ border-radius: 5px;
+ height: 20px;
+ font-size: 12px;
+ line-height: 20px;
+ vertical-align: center;
+ text-align: center;
+}

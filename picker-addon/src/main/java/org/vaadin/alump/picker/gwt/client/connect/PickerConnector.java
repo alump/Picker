@@ -12,7 +12,8 @@ import com.vaadin.shared.ui.Connect;
 
 @SuppressWarnings("serial")
 @Connect(org.vaadin.alump.picker.Picker.class)
-public class PickerConnector extends AbstractComponentConnector implements ValueChangeHandler<Integer> {
+public class PickerConnector extends AbstractComponentConnector
+	implements ValueChangeHandler<Integer> {
 	
     protected final PickerServerRpc serverRpc = RpcProxy.create(
             PickerServerRpc.class, this);
@@ -20,13 +21,6 @@ public class PickerConnector extends AbstractComponentConnector implements Value
     @Override
     public void init() {
         super.init();
-    }
-    
-    @Override
-    public GwtPicker createWidget() {
-        GwtPicker picker = (GwtPicker) super.createWidget();
-        picker.addValueChangeHandler(this);
-        return picker;
     }
 
     @Override

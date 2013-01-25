@@ -20,7 +20,7 @@
             <description>
             Application widgetset</description>
             <param-name>widgetset</param-name>
-            <param-value>org.vaadin.alump.picker.demo.gwt.PickerDemoWidgetset</param-value>
+            <param-value>org.vaadin.alump.picker.demo.gwt.PickerDemoWidgetSet</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
