@@ -5,6 +5,7 @@ import org.vaadin.alump.picker.gwt.client.shared.PickerState;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.vaadin.client.VConsole;
 import com.vaadin.client.communication.RpcProxy;
 import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.ui.AbstractComponentConnector;
@@ -21,6 +22,8 @@ public class PickerConnector extends AbstractComponentConnector
     @Override
     public void init() {
         super.init();
+        
+        getWidget().addValueChangeHandler(this);
     }
 
     @Override
@@ -36,13 +39,17 @@ public class PickerConnector extends AbstractComponentConnector
     	
     	int numberOfValues = getState().values.size();
     	getWidget().setValueAmount(numberOfValues);
-    	
+    	    	
     	for (int i = 0; i < numberOfValues; ++i) {
     		getWidget().setValuePresentation(i, getState().values.get(i),
     				getState().valuesInHTML);
     	}
     	
-    	getWidget().setValue(getState().currentValue);
+    	if (getState().currentValue != null) {
+    		getWidget().setValue(getState().currentValue);
+    	} else {
+    		VConsole.error("Current value missing");
+    	}
     }
     
     @Override

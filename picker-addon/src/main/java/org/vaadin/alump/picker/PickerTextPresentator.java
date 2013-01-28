@@ -1,7 +1,8 @@
 package org.vaadin.alump.picker;
 
 /**
- * Simple generator that uses toString function to generate text presentation.
+ * Simple generator that uses toString function to generate plain text
+ * presentation for the values.
  */
 public class PickerTextPresentator implements PickerValuePresentator {
 

@@ -1,13 +1,25 @@
 @import "../reindeer/reindeer.scss";
 @include reindeer;
 
-.demo-b-line {
- background-color: #008;
+.demo-b-tree,.demo-b-trunk {
+ display: inline-block;
  color: white;
- border-radius: 5px;
  height: 20px;
  font-size: 12px;
  line-height: 20px;
  vertical-align: center;
  text-align: center;
+}
+.demo-b-tree {
+ background-color: #080;
+ border-radius: 10px 10px 0px 0px;
+}
+
+.demo-b-trunk {
+ background-color: #440;
+ width: 15%;
+}
+
+.alump-picker-line:last-child .demo-b-trunk {
+ border-radius: 0px 0px 5px 5px;
 }
