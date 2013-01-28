@@ -3,7 +3,7 @@ Picker Vaadin UI Component Add On
 Picker is scrollable value picker. It's similar to presentation of select
 HTML element on iOS devices.
 
-Demo application: TBA
+Demo application: http://siika.fi:8080/PickerDemo/
 Source code: https://github.com/alump/Picker
 Vaadin Directory: TBA
 License: Apache License 2.0
