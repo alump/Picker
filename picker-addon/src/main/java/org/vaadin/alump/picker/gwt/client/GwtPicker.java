@@ -114,13 +114,11 @@ public class GwtPicker extends Widget implements
             VConsole.log("Connect picker events in mouse mode");
             addHandler(eventHandler, ClickEvent.getType());
 
-            // Buggy
-            // DOM.sinkEvents((com.google.gwt.user.client.Element)
-            // overlayElement,
-            // Event.MOUSEEVENTS);
-            // DOM.setEventListener(
-            // (com.google.gwt.user.client.Element) overlayElement,
-            // eventHandler);
+            DOM.sinkEvents((com.google.gwt.user.client.Element) overlayElement,
+                    Event.MOUSEEVENTS);
+            DOM.setEventListener(
+                    (com.google.gwt.user.client.Element) overlayElement,
+                    eventHandler);
         }
 
     }
@@ -186,6 +184,7 @@ public class GwtPicker extends Widget implements
             dragStartY = Util.getTouchOrMouseClientY(event);
             dragStartIndex = GwtPicker.this.currentValue;
             setTransitionMode(TransitionMode.DRAGGING);
+            event.stopPropagation();
 
         }
 
@@ -254,7 +253,7 @@ public class GwtPicker extends Widget implements
                 onDragMove(event);
                 break;
             case Event.ONTOUCHEND:
-            case Event.ONMOUSEOUT:
+            case Event.ONMOUSEUP:
                 onDragEnd(event);
                 break;
             }
