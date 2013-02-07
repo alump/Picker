@@ -5,14 +5,9 @@
 	<artifactId>picker-addon</artifactId>
 	<packaging>jar</packaging>
 	<name>Picker addon</name>
+	<version>${picker.version}</version>
 
 	<description>Picker Vaadin 7 addon</description>
-
-	<parent>
-		<groupId>org.vaadin.alump</groupId>
-		<artifactId>picker</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
-	</parent>
 
 	<organization>
 		<name>Sami Viitanen</name>
@@ -32,12 +27,13 @@
 	</developers>
 
 	<properties>
+	    <picker.version>0.0.2-SNAPSHOT</picker.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- May be overridden by the build system -->
 		<license.short.name>apache2</license.short.name>
-		<vaadin.version>7.0.0.rc2</vaadin.version>
-		<vaadin.plugin.version>7.0.0.rc2</vaadin.plugin.version>
+		<vaadin.version>7.0.0</vaadin.version>
+		<vaadin.plugin.version>7.0.0</vaadin.plugin.version>
 
 		<Implementation-Version>${project.version}</Implementation-Version>
 		<!-- Must not change this because of the Directory -->

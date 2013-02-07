@@ -3,6 +3,9 @@
  height: 100px;
  position: relative;
  cursor: default;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ie-user-select: none;
 }
 .alump-picker > .alump-picker-outer,
 .alump-picker > .alump-picker-overlay {
@@ -12,7 +15,6 @@
  top: 10px;
  bottom: 10px;
  border-radius: 5px;
- -webkit-user-select: none;
 }
 .alump-picker > .alump-picker-outer {
  overflow: hidden;
@@ -40,8 +42,16 @@
 }
 .alump-picker-inner.alump-picker-stepping {
  -webkit-transition: top 0.3s ease-in-out;
+ -moz-transition: top 0.3s ease-in-out;
+ -o-transition: top 0.3s ease-in-out;
  transition: top 0.3s ease-in-out;
- }
+}
+.alump-picker-inner.alump-picker-dragging {
+ -webkit-transition: top 0.05s linear;
+ -moz-transition: top 0.05s linear;
+ -o-transition: top 0.05s linear;
+ transition: top 0.05s linear;
+}
 .alump-picker-line {
  height: 20px;
  line-height: 20px;
