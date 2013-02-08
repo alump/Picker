@@ -3,9 +3,6 @@
  height: 100px;
  position: relative;
  cursor: default;
- -webkit-user-select: none;
- -moz-user-select: none;
- -ie-user-select: none;
 }
 .alump-picker > .alump-picker-outer,
 .alump-picker > .alump-picker-overlay {
@@ -34,6 +31,11 @@
  background: -o-linear-gradient(top, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.45) 10%,rgba(0,0,0,0.15) 20%,rgba(0,0,0,0.05) 30%,rgba(255,255,255,0.05) 35%,rgba(255,255,255,0.3) 49%,rgba(255,255,255,0.15) 51%,rgba(255,255,255,0.05) 65%,rgba(0,0,0,0.05) 70%,rgba(0,0,0,0.15) 80%,rgba(0,0,0,0.45) 90%,rgba(0,0,0,0.9) 100%);
  background: -ms-linear-gradient(top, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.45) 10%,rgba(0,0,0,0.15) 20%,rgba(0,0,0,0.05) 30%,rgba(255,255,255,0.05) 35%,rgba(255,255,255,0.3) 49%,rgba(255,255,255,0.15) 51%,rgba(255,255,255,0.05) 65%,rgba(0,0,0,0.05) 70%,rgba(0,0,0,0.15) 80%,rgba(0,0,0,0.45) 90%,rgba(0,0,0,0.9) 100%);
  background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.45) 10%,rgba(0,0,0,0.15) 20%,rgba(0,0,0,0.05) 30%,rgba(255,255,255,0.05) 35%,rgba(255,255,255,0.3) 49%,rgba(255,255,255,0.15) 51%,rgba(255,255,255,0.05) 65%,rgba(0,0,0,0.05) 70%,rgba(0,0,0,0.15) 80%,rgba(0,0,0,0.45) 90%,rgba(0,0,0,0.9) 100%);
+ -o-user-select:none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ -webkit-user-select: none;
+ user-select: none;
 }
 .alump-picker-inner {
  position: absolute;

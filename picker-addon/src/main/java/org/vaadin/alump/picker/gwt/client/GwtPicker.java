@@ -1,6 +1,7 @@
 package org.vaadin.alump.picker.gwt.client;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.dom.client.Document;
@@ -51,6 +52,7 @@ public class GwtPicker extends Widget implements
     public final static String CLASSNAME_DRAGGING = CLASSNAME + "-dragging";
 
     protected final static int DRAG_TRESSHOLD_Y = 10;
+    protected final static long IGNORE_CLICK_AFTER_DRAG_MS = 200;
 
     protected Element upButtonElement;
     protected Element downButtonElement;
@@ -91,6 +93,7 @@ public class GwtPicker extends Widget implements
 
         overlayElement = Document.get().createDivElement();
         overlayElement.addClassName(CLASSNAME_OVERLAY);
+        overlayElement.setAttribute("unselectable", "on");
         getElement().appendChild(overlayElement);
         eventHandler.setCaptureElement(overlayElement);
 
@@ -102,7 +105,7 @@ public class GwtPicker extends Widget implements
         super.onAttach();
 
         if (BrowserInfo.get().isTouchDevice()) {
-            VConsole.log("Connect picker events in touch mode");
+            // VConsole.log("Connect picker events in touch mode");
             addHandler(eventHandler, ClickEvent.getType());
 
             DOM.sinkEvents((com.google.gwt.user.client.Element) overlayElement,
@@ -111,7 +114,7 @@ public class GwtPicker extends Widget implements
                     (com.google.gwt.user.client.Element) overlayElement,
                     eventHandler);
         } else {
-            VConsole.log("Connect picker events in mouse mode");
+            // VConsole.log("Connect picker events in mouse mode");
             addHandler(eventHandler, ClickEvent.getType());
 
             DOM.sinkEvents((com.google.gwt.user.client.Element) overlayElement,
@@ -134,6 +137,7 @@ public class GwtPicker extends Widget implements
         private int dragStartY = -1;
         private int dragStartIndex = -1;
         private Element captureElement = null;
+        private long dragEnded = 0;
 
         public void setCaptureElement(Element element) {
             captureElement = element;
@@ -141,6 +145,7 @@ public class GwtPicker extends Widget implements
 
         @Override
         public void onClick(ClickEvent event) {
+
             Element element = Element.as(event.getNativeEvent()
                     .getEventTarget());
 
@@ -154,7 +159,10 @@ public class GwtPicker extends Widget implements
                 setNextValue();
             } else if (overlayElement != null
                     && overlayElement.isOrHasChild(element)) {
-                VConsole.log("onClick");
+                if (new Date().getTime() - dragEnded < IGNORE_CLICK_AFTER_DRAG_MS) {
+                    return;
+                }
+                // VConsole.log("onClick");
                 GwtPicker.this.setValueAtPosition(
                         Util.getTouchOrMouseClientX(event.getNativeEvent()),
                         Util.getTouchOrMouseClientY(event.getNativeEvent()),
@@ -171,15 +179,17 @@ public class GwtPicker extends Widget implements
 
         protected void onDragStart(NativeEvent event) {
             if (dragStartY >= 0) {
+                // VConsole.log("Ignore onDragStart");
                 return;
             }
 
             Element element = Element.as(event.getEventTarget());
             if (!overlayElement.isOrHasChild(element)) {
+                // VConsole.log("onDragStart not at overlay");
                 return;
             }
 
-            VConsole.log("onDragStart");
+            // VConsole.log("onDragStart");
 
             dragStartY = Util.getTouchOrMouseClientY(event);
             dragStartIndex = GwtPicker.this.currentValue;
@@ -230,7 +240,8 @@ public class GwtPicker extends Widget implements
                 return;
             }
 
-            VConsole.log("onDragEnd");
+            dragEnded = new Date().getTime();
+            // VConsole.log("onDragEnd");
 
             Event.releaseCapture(captureElement);
             dragged = false;
@@ -244,16 +255,25 @@ public class GwtPicker extends Widget implements
         @Override
         public void onBrowserEvent(Event event) {
             switch (event.getTypeInt()) {
-            case Event.ONTOUCHSTART:
             case Event.ONMOUSEDOWN:
+                if (event.getButton() != NativeEvent.BUTTON_LEFT) {
+                    // VConsole.log("Ignoring button: " + event.getButton());
+                    return;
+                }
+                event.preventDefault();
+            case Event.ONTOUCHSTART:
                 onDragStart(event);
                 break;
             case Event.ONTOUCHMOVE:
             case Event.ONMOUSEMOVE:
                 onDragMove(event);
                 break;
-            case Event.ONTOUCHEND:
             case Event.ONMOUSEUP:
+                if (event.getButton() != NativeEvent.BUTTON_LEFT) {
+                    // VConsole.log("Ignoring button: " + event.getButton());
+                    return;
+                }
+            case Event.ONTOUCHEND:
                 onDragEnd(event);
                 break;
             }

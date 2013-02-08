@@ -10,7 +10,7 @@
 	<version>${picker.version}</version>
 
 	<properties>
-	    <picker.version>0.0.2-SNAPSHOT</picker.version>
+	    <picker.version>0.1.0</picker.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- May be overridden by the build system -->
