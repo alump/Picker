@@ -1,4 +1,8 @@
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/picker)
+[![Stars on Vaadin Directory](https://img.shields.io/vaadin-directory/star/picker.svg)](https://vaadin.com/directory/component/picker)
+
 Picker Vaadin UI Component Add On
+=================================
 
 Picker is scrollable value picker. It's similar to presentation of select
 HTML element on iOS devices.
@@ -13,7 +17,7 @@ This project can be imported to Eclipse with m2e.
 Simple Maven tutorials:
 
 
-***** How to compile add on jar package for your project *****
+### How to compile add on jar package for your project
 
 > cd picker-addon
 > mvn package
@@ -22,37 +26,44 @@ add on can be found at: picker-addon/target/Picker-<version>.jar
 zip package used at Vaadin directory can be found at:
 picker-addon/target/Picker-<version>.zip
 
-***** How to install fancylayouts to your Maven repository *****
+### How to install fancylayouts to your Maven repository
 
 To install addon to your local repository, run:
+```
+cd picker-addon
+mvn install
+```
 
-> cd picker-addon
-> mvn install
-
-
-***** How to run test application *****
+### How to run test application
 
 First compile and install addon (if not already installed)
-> cd picker-addon
-> mvn install
+```
+cd picker-addon
+mvn install
+```
 
 Then compile demo widgetset and start HTTP server
-> cd ../picker-demo
-> mvn vaadin:compile
-> mvn jetty:run
+```
+cd ../picker-demo
+mvn vaadin:compile
+mvn jetty:run
+```
 
 Demo application is running at http://localhost:8080/picker
 
 
-
-***** How to compile test application WAR *****
+### How to compile test application WAR
 
 First compile and install addon (if not already installed)
-> cd picker-addon
-> mvn install
+```
+cd picker-addon
+mvn install
+```
 
 Then construct demo package (this should automatically compile widgetset)
-> cd ../picker-demo
-> mvn package
+```
+cd ../picker-demo
+mvn package
+```
 
 War package can be now found at picker-demo/target/PickerDemo.war
